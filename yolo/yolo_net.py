@@ -82,7 +82,7 @@ class YOLONet(object):
             self.labels = tf.placeholder(
                 'float32', [None, self.cell_size, self.cell_size, 5 + self.num_class])
             self.loss = self.loss_layer(33, self.fc_32, self.labels)
-            tf.scalar_summary(self.phase + '/total_loss', self.loss)
+            tf.summary.scalar(self.phase + '/loss', self.loss)
         else:
             self.fc_32 = self.fc_layer(
                 32, self.fc_30, self.output_size, flat=False, linear=True)

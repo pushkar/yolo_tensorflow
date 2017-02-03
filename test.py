@@ -40,7 +40,7 @@ class Detector(object):
             cv2.rectangle(img, (x - w, y - h), (x + w, y + h), (0, 255, 0), 2)
             cv2.rectangle(img, (x - w, y - h - 20),
                           (x + w, y - h), (125, 125, 125), -1)
-            cv2.putText(img, result[i][0] + ' : %.2f' % result[i][5], (x - w + 5, y - h - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.CV_AA)
+            cv2.putText(img, result[i][0] + ' : %.2f' % result[i][5], (x - w + 5, y - h - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
 
     def detect(self, img):
         img_h, img_w, _ = img.shape
@@ -60,7 +60,7 @@ class Detector(object):
         return result
 
     def detect_from_cvmat(self, inputs):
-        net_output = self.sess.run(self.net.fc_32, feed_dict={self.net.images: inputs})
+        net_output = self.sess.run(self.net.fc_32, feed_dict={self.net.x: inputs})
         results = []
         for i in range(net_output.shape[0]):
             results.append(self.interpret_output(net_output[i]))
@@ -169,8 +169,8 @@ def main():
     detector = Detector(yolo, weight_file)
 
     # detect from camera
-    cap = cv2.VideoCapture(-1)
-    detector.camera_detector(cap)
+    #cap = cv2.VideoCapture(-1)
+    #detector.camera_detector(cap)
 
     # detect from image file
     imname = 'test/person.jpg'

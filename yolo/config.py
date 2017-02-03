@@ -14,8 +14,8 @@ OUTPUT_DIR = os.path.join(DATA_PATH, 'output')
 
 WEIGHTS_DIR = os.path.join(DATA_PATH, 'weights')
 
-WEIGHTS_FILE = None
-# WEIGHTS_FILE = os.path.join(DATA_PATH, 'weights', 'YOLO_small.ckpt')
+#WEIGHTS_FILE = None
+WEIGHTS_FILE = os.path.join(DATA_PATH, 'weights', 'YOLO_small.ckpt')
 
 CLASSES = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus',
            'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse',
@@ -49,7 +49,7 @@ COORD_SCALE = 5.0
 # solver parameter
 #
 
-GPU = ''
+GPU = '0'
 
 LEARNING_RATE = 0.0001
 
@@ -59,7 +59,7 @@ DECAY_RATE = 0.1
 
 STAIRCASE = True
 
-BATCH_SIZE = 45
+BATCH_SIZE = 10
 
 MAX_ITER = 15000
 

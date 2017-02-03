@@ -36,7 +36,7 @@ class Solver(object):
         # self.optimizer = tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(self.net.loss, global_step=self.global_step)
         self.optimizer = tf.train.GradientDescentOptimizer(
             learning_rate=self.learning_rate).minimize(
-            self.net.total_loss, global_step=self.global_step)
+            self.net.loss, global_step=self.global_step)
         self.ema = tf.train.ExponentialMovingAverage(decay=0.9999)
         self.averages_op = self.ema.apply(tf.trainable_variables())
         with tf.control_dependencies([self.optimizer]):
@@ -138,7 +138,7 @@ def main():
     if args.gpu is not None:
         cfg.GPU = str(args.gpu)
 
-    cfg.GPU = '1'
+    cfg.GPU = '0'
     cfg.WEIGHTS_FILE = os.path.join(cfg.WEIGHTS_DIR, 'YOLO_small.ckpt')
     # cfg.DISPLAY_ITER = 1
 
